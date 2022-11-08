@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
+import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
+    const { user, singOut } = useContext(AuthContext);
+    const handleSingOut = () => {
+        singOut()
+            .then(result => { })
+            .catch(error => console.log(error))
+    }
+
     return (
         <div className=' bg-red-300'>
 
@@ -12,8 +21,9 @@ const Header = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a href='/#'>Item 1</a></li>
-                            <li><a href='/#'>Item 3</a></li>
+                            <Link className='mr-3' to={'/home'}>Home</Link>
+                            <Link className='mr-3' to={'/about'}>About</Link>
+                            <Link className='mr-3' to={'/login'}>Login</Link>
                         </ul>
                     </div>
                     <a href='/#' className="btn btn-ghost normal-case text-xl">daisyUI</a>
@@ -23,26 +33,51 @@ const Header = () => {
                         <Link className='mr-3' to={'/home'}>Home</Link>
                         <Link className='mr-3' to={'/about'}>About</Link>
                         <Link className='mr-3' to={'/login'}>Login</Link>
+                        <Link className='mr-3' to={'/register'}>Register</Link>
                     </ul>
                 </div >
                 <div className="navbar-end">
-                    <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img src="https://placeimg.com/80/80/people" alt='' />
+                    {user?.uid ?
+                        <>
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        {user?.photoURL ?
+                                            <>
+                                                <img src={user?.photoURL} alt='' />
+                                            </>
+                                            :
+                                            <>
+                                                <FaUser></FaUser>
+                                            </>}
+
+                                    </div>
+                                </label>
+                                <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li>
+                                        <a href='/' className="justify-between" >
+                                            Profile
+                                            <span className="badge">New</span>
+                                        </a>
+                                    </li>
+                                    <li><a href='/'>Settings</a></li>
+                                    <li><button onClick={handleSingOut} className="btn btn-outline btn-warning"> Login</button></li>
+                                </ul>
                             </div>
-                        </label>
-                        <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
-                                <a href='/' className="justify-between" >
-                                    Profile
-                                    <span className="badge">New</span>
-                                </a>
-                            </li>
-                            <li><a href='/'>Settings</a></li>
-                            <li><a href='/'>Logout</a></li>
-                        </ul>
-                    </div>
+                        </>
+                        :
+                        <>
+                            <Link to={'/login'}>
+                                <button className="btn btn-outline btn-warning"> Login</button>
+                            </Link>
+                            <Link to={'/register'}>
+                                <button className="btn btn-outline btn-warning"> Register</button>
+                            </Link>
+                        </>
+                    }
+
+
+
                 </div>
             </div>
         </div>

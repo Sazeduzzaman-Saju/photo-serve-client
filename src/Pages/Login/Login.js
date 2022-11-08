@@ -1,13 +1,44 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import useWebTitle from '../../hooks/useWebTitle/useWebtitle';
 
 const Login = () => {
+    const { singInUser } = useContext(AuthContext);
+    const [error, setError] = useState(false);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+    const handleSingIn = event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        singInUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                setError('');
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.error(error);
+                setError(error.message)
+
+            })
+    }
+    useWebTitle('Login');
     return (
         <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-red-300 dark:text-gray-100 mx-auto mt-20 mb-20">
             <h1 className="text-2xl font-bold text-center">Login</h1>
-            <form novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+            <form onSubmit={handleSingIn} className="space-y-6 ng-untouched ng-pristine ng-valid">
                 <div className="space-y-1 text-sm">
-                    <label for="username" className="block dark:text-gray-400">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+                    <label for="email" className="block dark:text-gray-400">Email</label>
+                    <input type="text" name="email" id="email" placeholder="Email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
                 </div>
                 <div className="space-y-1 text-sm">
                     <label for="password" className="block dark:text-gray-400">Password</label>
@@ -17,6 +48,7 @@ const Login = () => {
                     </div>
                 </div>
                 <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">Sign in</button>
+                <div>{error}</div>
             </form>
             <div className="flex items-center pt-4 space-x-1">
                 <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
@@ -41,7 +73,7 @@ const Login = () => {
                 </button>
             </div>
             <p className="text-xs text-center sm:px-6 dark:text-gray-400">Don't have an account?
-                <a rel="noopener noreferrer" href="/#" className="underline dark:text-gray-100">Sign up</a>
+                <Link to={'/register'}>Sign Up</Link>
             </p>
         </div>
     );
