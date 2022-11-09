@@ -33,6 +33,7 @@ const Header = () => {
                         <Link className='mr-3' to={'/home'}>Home</Link>
                         <Link className='mr-3' to={'/about'}>About</Link>
                         <Link className='mr-3' to={'/services'}>Services</Link>
+                        <Link className='mr-3' to={'/user-booking'}>Booking</Link>
                     </ul>
                 </div >
                 <div className="navbar-end">
@@ -56,10 +57,12 @@ const Header = () => {
                                     <li>
                                         <a href='/' className="justify-between" >
                                             Profile
-                                            <span className="badge">New</span>
                                         </a>
                                     </li>
-                                    <li><a href='/'>Settings</a></li>
+                                    <li>
+                                        <Link to={'/user-booking'}>My Booking</Link>
+                                    </li>
+                                    <li><a href='/'>Review</a></li>
                                     <li><button onClick={handleSingOut} className="btn btn-outline btn-warning"> Login</button></li>
                                 </ul>
                             </div>

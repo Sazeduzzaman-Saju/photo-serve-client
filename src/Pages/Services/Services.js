@@ -4,6 +4,8 @@ import SingleService from './SingleService';
 
 const Services = () => {
     const services = useLoaderData();
+
+
     return (
         <div className=''>
             <div className='grid grid-cols-3 gap-4 max-w-screen-xl mx-auto'>

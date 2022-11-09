@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
+import ServiceReview from '../../Review/ServiceReview';
 
 const ServiceDetails = () => {
     const { _id, title, price, img, description } = useLoaderData({});
+
+    const { user } = useContext(AuthContext);
+    const [customerReview, setCustomerReview] = useState([]);
+    const services = useLoaderData();
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/review?reviewId=${services?._id}`)
+            .then(res => res.json())
+            .then(data => setCustomerReview(data))
+    }, [services?._id])
     return (
         <div>
             <section className="dark:bg-gray-800 dark:text-gray-100 mt-20 mb-20">
@@ -23,6 +35,12 @@ const ServiceDetails = () => {
                             <Link to={'/services'}>
                                 <button className='btn'>Back Services</button>
                             </Link>
+                        </div>
+                        <div>
+                            {customerReview.map(review => <ServiceReview
+                                key={review._id}
+                                review={review}
+                            ></ServiceReview>)}
                         </div>
                     </div>
                 </div>

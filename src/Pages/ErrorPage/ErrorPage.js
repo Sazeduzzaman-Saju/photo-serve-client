@@ -13,7 +13,7 @@ const ErrorPage = () => {
                         <h1 className="text-5xl font-bold">Oops! Page Not Found</h1>
                         <p className="py-6">The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
                         <Link to='/home'>
-                            <button class="custom-btn btn-6"><span>BACK HOME</span></button>
+                            <button className="custom-btn btn-6"><span>BACK HOME</span></button>
                         </Link>
                     </div>
                 </div>
