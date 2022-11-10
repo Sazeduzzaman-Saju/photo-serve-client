@@ -1,19 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
-import ServicesItems from './ServicesItems/ServicesItems';
-import toast from 'react-hot-toast';
+import useWebTitle from '../../../hooks/useWebTitle/useWebtitle';
+
 
 const ClientService = () => {
     const { user } = useContext(AuthContext);
-    const [services, setServices] = useState([]);
-
-    useEffect(() => {
-        fetch(`https://photo-serve-server.vercel.app/specific-data?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => setServices(data))
-    }, [user?.email])
-
-
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -52,26 +43,7 @@ const ClientService = () => {
             })
             .catch(error => console.error(error))
     };
-
-
-    const handleDelete = id => {
-        const proceed = window.confirm('Confirm Delete This Order')
-        if (proceed) {
-            fetch(`https://photo-serve-server.vercel.app/user-services/${id}`, {
-                method: 'DELETE'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                    if (data.deletedCount > 0) {
-                        toast.error('Delete Successfully')
-                        const available = services.filter(order => order._id !== id)
-                        setServices(available);
-                    }
-                })
-                .catch(error => console.error(error))
-        }
-    }
+    useWebTitle('Client Services Booking');
     return (
         <section className="dark:bg-gray-800 dark:text-gray-100 max-w-screen-xl mx-auto">
             <h1 className='text-5xl text-center mt-10'>Book your service</h1>
@@ -98,13 +70,7 @@ const ClientService = () => {
             <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
                 <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
                     <div className='grid grid-cols-3 gap-4 mt-20 mb-20'>
-                        {
-                            services.map(service => <ServicesItems
-                                key={service._id}
-                                service={service}
-                                handleDelete={handleDelete}
-                            ></ServicesItems>)
-                        }
+
                     </div>
                 </div>
 

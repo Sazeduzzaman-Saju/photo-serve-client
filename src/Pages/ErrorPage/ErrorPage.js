@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useWebTitle from '../../hooks/useWebTitle/useWebtitle';
 import './ErrorPage.css'
 
 const ErrorPage = () => {
+    useWebTitle('Routes Not Found..!');
     return (
         <div className=''>
             {/* https://i.ibb.co/VS62RfK/404.png */}

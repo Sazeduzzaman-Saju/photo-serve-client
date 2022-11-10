@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import useWebTitle from '../../../hooks/useWebTitle/useWebtitle';
 
 const Booking = () => {
     const { user } = useContext(AuthContext);
@@ -45,7 +46,7 @@ const Booking = () => {
             })
             .catch(error => console.error(error))
     };
-
+    useWebTitle('Booking Service');
     return (
         <div className='mt-5 mb-5'>
 

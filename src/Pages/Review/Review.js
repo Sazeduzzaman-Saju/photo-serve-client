@@ -3,8 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import MainBookingService from '../Services/Booking/BookingService/MainBookingService/MainBookingService';
-
-
+import useWebTitle from '../../hooks/useWebTitle/useWebtitle';
 
 
 
@@ -49,6 +48,7 @@ const Review = () => {
             .catch(error => console.error(error))
 
     }
+    useWebTitle('Review');
     return (
         <div className='mt-5 mb-5'>
             <MainBookingService

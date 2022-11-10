@@ -44,10 +44,9 @@ body::-webkit-scrollbar-thumb {
 hr {
   display: flex;
   justify-content: center;
-  border-top: 10px solid violet;
+  border-top: 3px solid violet;
   width: 30%;
   margin: auto;
-
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

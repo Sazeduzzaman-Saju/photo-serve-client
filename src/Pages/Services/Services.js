@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import useWebTitle from '../../hooks/useWebTitle/useWebtitle';
 import ClientOtherServices from './ServiceDetails/ClientOtherServices';
 import SingleService from './SingleService';
 
@@ -13,7 +14,7 @@ const Services = () => {
             .then(res => res.json())
             .then(data => setUserServices(data))
     }, [])
-
+    useWebTitle('Services');
     return (
         <div className=''>
             <section className="dark:bg-gray-800 dark:text-gray-100">

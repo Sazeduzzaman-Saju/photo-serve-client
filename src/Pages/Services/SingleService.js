@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import { FcAdvance } from "react-icons/fc";
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const SingleService = ({ service }) => {
     // console.log(service)
@@ -19,7 +21,11 @@ const SingleService = ({ service }) => {
                     <section className="flex justify-center items-center mt-5 bg-blue-lightest">
                         <div className="bg-white rounded shadow-md flex card text-grey-darkest">
                             <div className='flex'>
-                                <img className="w-1/2 h-72 rounded-l-sm" src={img} alt="Room " />
+                                <PhotoProvider>
+                                    <PhotoView src={img}>
+                                        <img src={img} className="w-1/2 h-72 rounded-l-sm" alt="" />
+                                    </PhotoView>
+                                </PhotoProvider>
                                 <div className="w-full flex flex-col">
                                     <div className="p-4 pb-0 flex-1">
                                         <h3 className="font-bold text-grey-darkest mb-5">{title}</h3>

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import { FaUser } from 'react-icons/fa';
+import Logo from '../../../assets/logo.png'
 
 const Header = () => {
     const { user, singOut } = useContext(AuthContext);
@@ -12,9 +13,9 @@ const Header = () => {
     }
 
     return (
-        <div className=' bg-violet-400'>
+        <div className=' '>
 
-            <div className="navbar max-w-screen-xl mx-auto" >
+            <div className="navbar max-w-screen-xl mx-auto  " >
                 <div className="navbar-start ">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -24,16 +25,21 @@ const Header = () => {
                             <Link className='mr-3' to={'/home'}>Home</Link>
                             <Link className='mr-3' to={'/about'}>About</Link>
                             <Link className='mr-3' to={'/services'}>Services</Link>
+                            <Link className='mr-3' to={'/blog'}>Blog</Link>
+                            {user?.uid ? <><Link className='mr-3' to={'/dashboard'}>DashBoard</Link></> : <></>}
                         </ul>
                     </div>
-                    <a href='/#' className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <a href='/#' className="btn btn-ghost normal-case text-xl">
+                        <img src={Logo} className="w-40" alt="" />
+                    </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
                         <Link className='mr-3' to={'/home'}>Home</Link>
                         <Link className='mr-3' to={'/about'}>About</Link>
                         <Link className='mr-3' to={'/services'}>Services</Link>
-                        <Link className='mr-3' to={'/user-booking'}>Booking</Link>
+                        <Link className='mr-3' to={'/blog'}>Blog</Link>
+                        {user?.uid ? <><Link className='mr-3' to={'/dashboard'}>DashBoard</Link></> : <></>}
                     </ul>
                 </div >
                 <div className="navbar-end">
@@ -63,17 +69,17 @@ const Header = () => {
                                         <Link to={'/user-services'}>My Services</Link>
                                     </li>
                                     <li><a href='/'>Review</a></li>
-                                    <li><button onClick={handleSingOut} className="btn btn-outline btn-warning"> Login</button></li>
+                                    <li><button onClick={handleSingOut} className="btn btn-outline btn-warning"> Logout</button></li>
                                 </ul>
                             </div>
                         </>
                         :
                         <>
                             <Link to={'/login'}>
-                                <button className="btn btn-outline btn-warning"> Login</button>
+                                <button className="btn btn-outline  rounded-lg hover:bg-black"> Login</button>
                             </Link>
                             <Link to={'/register'}>
-                                <button className="btn btn-outline btn-warning"> Register</button>
+                                <button className="btn btn-outline  rounded-lg hover:bg-black"> Register</button>
                             </Link>
                         </>
                     }

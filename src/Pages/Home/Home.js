@@ -3,6 +3,8 @@ import { FcInternal } from "react-icons/fc";
 import { Link } from 'react-router-dom';
 import SomeServices from './SomeServices';
 import ClientServicesItems from './ClientServicesItems/ClientServicesItems'
+import ShortDetails from './ShortDetails/ShortDetails';
+import useWebTitle from '../../hooks/useWebTitle/useWebtitle';
 
 const Home = () => {
     const [services, setServices] = useState([]);
@@ -21,6 +23,7 @@ const Home = () => {
             .then(res => res.json())
             .then(data => setUserServices(data))
     }, [])
+    useWebTitle('Home-PhotoServe');
     return (
         <div className='container mx-auto px-4 mt-20'>
             {/* <h1 className='flex justify-start'>This is Home {services.length}</h1> */}
@@ -67,15 +70,26 @@ const Home = () => {
                     }
                 </div>
                 <div className='text-center mt-5 mb-10'>
-                    <Link to={'/services'}><button className='btn btn-outline'> See All </button> </Link>
+                    <Link to={'/services'}><button class="custom-btn btn-6"> See All </button> </Link>
                 </div>
             </section>
             <section>
                 <div className='container mx-auto px-4 mt-20 mb-20 text-center'>
-                    <h1 className='text-4xl text-bold font-bold mb-3'>Client Services <br />We Serve</h1>
+                    <h1 className='text-4xl text-bold font-bold mb-3'>Services<br /> Comming Soon</h1>
+                    <hr />
+
+                </div>
+            </section>
+            <section>
+                <ShortDetails></ShortDetails>
+            </section>
+            <section>
+                <div className='container mx-auto px-4 mt-20 mb-20 text-center'>
+                    <h1 className='text-4xl text-bold font-bold mb-3'>Client  <br /> Services We Serve</h1>
                     <hr />
                 </div>
             </section>
+
             <section>
                 <div className=' grid grid-cols-3 gap-4 max-w-screen-xl mx-auto'>
                     {
@@ -86,9 +100,21 @@ const Home = () => {
                     }
                 </div>
                 <div className='text-center mt-5 mb-10'>
-                    <Link to={'/services'}><button className='btn btn-outline'> See All </button> </Link>
+                    <Link to={'/services'}><button class="custom-btn btn-6"> See All </button> </Link>
                 </div>
-            </section>
+            </section >
+            <section>
+                <div className="w-full rounded-md bg-violet-400">
+                    <div className="container flex flex-col flex-wrap content-center justify-center p-4 py-20 mx-auto md:p-10">
+                        <h1 className="text-5xl antialiased font-semibold leading-none text-center text-gray-100">Get Our Updates</h1>
+                        <p className="pt-2 pb-8 text-xl antialiased text-center dark:text-gray-100">Find out about events and other news</p>
+                        <div className="flex flex-row">
+                            <input type="text" placeholder="example@email.com" className="w-3/5 p-3 h-12 mt-5 rounded-l-lg sm:w-2/3" />
+                            <Link to={'/register'}><button type="button" className="custom-btn btn-6">Join Now</button></Link>
+                        </div>
+                    </div>
+                </div>
+            </section >
         </div >
     );
 };

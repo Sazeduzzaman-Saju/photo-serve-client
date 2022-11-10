@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../../context/AuthProvider/AuthProvider';
+import useWebTitle from '../../../../hooks/useWebTitle/useWebtitle';
 
 const BookingServices = ({ userBookingServices }) => {
     console.log(userBookingServices)
     const { user } = useContext(AuthContext)
     const { orderName, price, img, description } = userBookingServices;
 
-
+    useWebTitle('Booking Services');
 
     return (
         <div>

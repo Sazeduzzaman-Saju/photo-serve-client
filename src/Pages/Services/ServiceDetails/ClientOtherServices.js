@@ -6,7 +6,7 @@ import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 const ClientOtherServices = ({ otherService }) => {
     console.log(otherService)
     const { loading } = useContext(AuthContext);
-    const { _id, customerProfile, description, orderName, price } = otherService;
+    const { _id, img, description, orderName, price } = otherService;
     return (
         <div>
 
@@ -19,7 +19,7 @@ const ClientOtherServices = ({ otherService }) => {
                     <section className="flex justify-center items-center mt-5 bg-blue-lightest">
                         <div className="bg-white rounded shadow-md flex card text-grey-darkest">
                             <div className='flex'>
-                                <img className="w-1/2 h-72 rounded-l-sm" src={customerProfile} alt="Room " />
+                                <img className="w-1/2 h-72 rounded-l-sm" src={img} alt="Room " />
                                 <div className="w-full flex flex-col">
                                     <div className="p-4 pb-0 flex-1">
                                         <h3 className="font-bold text-grey-darkest mb-5">{orderName}</h3>

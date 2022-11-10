@@ -14,6 +14,9 @@ import Review from "../Pages/Review/Review";
 import ClientService from "../Pages/Services/ClientService/ClientService";
 import ClientOtherServicesDetails from "../Pages/Services/ServiceDetails/ClientOtherServiceDetails";
 import UserServiceBooking from "../Pages/Services/ServiceDetails/UserServiceBooking/UserServiceBooking";
+import DashBoard from "../Pages/Dashboard/DashBoard";
+import MyServices from "../Pages/Services/MyServices/MyServices";
+import Blog from "../Pages/Blog/Blog";
 
 const router = createBrowserRouter([
     {
@@ -82,6 +85,19 @@ const router = createBrowserRouter([
                 path: '/user-service-booking/:id',
                 element: <PrivateRoutes><UserServiceBooking /></PrivateRoutes>,
                 loader: ({ params }) => fetch(`https://photo-serve-server.vercel.app/user-services/${params.id}`)
+            },
+            {
+                path: '/dashboard',
+                element: <PrivateRoutes><DashBoard /></PrivateRoutes>,
+                loader: ({ params }) => fetch(`https://photo-serve-server.vercel.app/services`)
+            },
+            {
+                path: '/my-services',
+                element: <PrivateRoutes><MyServices /></PrivateRoutes>
+            },
+            {
+                path: '/blog',
+                element: <Blog />
             },
         ]
     },
