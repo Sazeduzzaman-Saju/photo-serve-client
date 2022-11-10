@@ -12,7 +12,7 @@ const Header = () => {
     }
 
     return (
-        <div className=' bg-red-300'>
+        <div className=' bg-violet-400'>
 
             <div className="navbar max-w-screen-xl mx-auto" >
                 <div className="navbar-start ">
@@ -60,7 +60,7 @@ const Header = () => {
                                         </a>
                                     </li>
                                     <li>
-                                        <Link to={'/user-booking'}>My Booking</Link>
+                                        <Link to={'/user-services'}>My Services</Link>
                                     </li>
                                     <li><a href='/'>Review</a></li>
                                     <li><button onClick={handleSingOut} className="btn btn-outline btn-warning"> Login</button></li>
@@ -77,8 +77,6 @@ const Header = () => {
                             </Link>
                         </>
                     }
-
-
 
                 </div>
             </div>

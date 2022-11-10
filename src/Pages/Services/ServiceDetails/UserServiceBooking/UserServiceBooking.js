@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
-import toast from 'react-hot-toast';
+import { AuthContext } from '../../../../context/AuthProvider/AuthProvider';
+// import toast from 'react-hot-toast';
 
-const Booking = () => {
+const UserServiceBooking = () => {
     const { user } = useContext(AuthContext);
-    const bookingServices = useLoaderData([]);
-    console.log(bookingServices)
-    const { _id, title, price, img, description } = bookingServices;
+    const userBookingServices = useLoaderData([]);
+    console.log(userBookingServices)
+    const { bookingId, title, price, customerProfile, description, img } = userBookingServices;
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -19,16 +19,16 @@ const Booking = () => {
         console.log(name, email, phoneNumber, message)
 
         const bookingOrder = {
-            bookingId: _id,
+            bookingId: bookingId,
             orderName: title,
             customer: name,
             price,
             email,
             phoneNumber,
             message,
-            img
+            img,
         }
-        fetch(`https://photo-serve-server.vercel.app/booking`, {
+        fetch(`https://photo-serve-server.vercel.app/user-service-booking`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -40,7 +40,7 @@ const Booking = () => {
                 console.log(data)
                 if (data.acknowledged) {
                     form.reset();
-                    toast.success('Booking Successfully placed')
+                    alert('Booking Successfully placed')
                 }
             })
             .catch(error => console.error(error))
@@ -49,19 +49,21 @@ const Booking = () => {
     return (
         <div className='mt-5 mb-5'>
             <section>
-                <div className="card card-side bg-base-100 shadow-xl max-w-screen-xl mx-auto mt-10 mb-10">
-                    <figure><img src={img} alt="" className='image-full' /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">{title}</h2>
-                        <p>{description}</p>
-                        <p>$ {price}</p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Watch</button>
+                <section>
+                    <div className="card card-side bg-base-100 shadow-xl max-w-screen-xl mx-auto mt-10 mb-10">
+                        <figure><img src={customerProfile} alt="" className='image-full' /></figure>
+                        <div className="card-body">
+                            <h2 className="card-title">{title}</h2>
+                            <p>{description}</p>
+                            <p>$ {price}</p>
+                            <div className="card-actions justify-end">
+                                <button className="btn btn-primary">Watch</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <h1 className='text-4xl'>{bookingServices.length}</h1>
+                </section>
+            </section >
+            <h1 className='text-5xl text-center mb-10'>Book Now</h1>
             <div className='max-w-[550px] mx-auto'>
                 <form onSubmit={handleSubmit}>
                     <div className='grid grid-cols-1 lg:grid-cols-1 gap-4 max-w-[550px] mx-auto'>
@@ -83,4 +85,4 @@ const Booking = () => {
     );
 };
 
-export default Booking;
+export default UserServiceBooking;

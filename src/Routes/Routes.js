@@ -11,12 +11,19 @@ import ServiceDetails from "../Pages/Services/ServiceDetails/ServiceDetails";
 import Booking from "../Pages/Services/Booking/Booking";
 import UserBooking from "../Pages/Services/Booking/UserBooking/UserBooking";
 import Review from "../Pages/Review/Review";
+import ClientService from "../Pages/Services/ClientService/ClientService";
+import ClientOtherServicesDetails from "../Pages/Services/ServiceDetails/ClientOtherServiceDetails";
+import UserServiceBooking from "../Pages/Services/ServiceDetails/UserServiceBooking/UserServiceBooking";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main />,
         children: [
+            {
+                path: '/',
+                element: <Home />
+            },
             {
                 path: '/home',
                 element: <Home />
@@ -28,28 +35,27 @@ const router = createBrowserRouter([
             {
                 path: '/services',
                 element: <Services />,
-                loader: () => fetch(`http://localhost:5000/services/`)
+                loader: () => fetch(`https://photo-serve-server.vercel.app/services/`)
             },
             {
                 path: '/services/:id',
-                element: <ServiceDetails />,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                element: <PrivateRoutes><ServiceDetails /></PrivateRoutes>,
+                loader: ({ params }) => fetch(`https://photo-serve-server.vercel.app/services/${params.id}`)
             },
             {
                 path: '/booking/:id',
                 element: <PrivateRoutes><Booking /></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/booking/${params.id}`)
+                loader: ({ params }) => fetch(`https://photo-serve-server.vercel.app/booking/${params.id}`)
             },
-
             {
                 path: '/review',
                 element: <PrivateRoutes><Review /></PrivateRoutes>,
-                loader: () => fetch(`http://localhost:5000/booking`)
+                loader: () => fetch(`https://photo-serve-server.vercel.app/booking`)
             },
             {
                 path: '/review/:id',
                 element: <PrivateRoutes><Review /></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/booking/${params.id}`)
+                loader: ({ params }) => fetch(`https://photo-serve-server.vercel.app/booking/${params.id}`)
             },
             {
                 path: '/login',
@@ -62,7 +68,21 @@ const router = createBrowserRouter([
             {
                 path: '/user-booking',
                 element: <PrivateRoutes><UserBooking /></PrivateRoutes>
-            }
+            },
+            {
+                path: '/user-services',
+                element: <PrivateRoutes><ClientService /></PrivateRoutes>
+            },
+            {
+                path: '/user-services/:id',
+                element: <PrivateRoutes><ClientOtherServicesDetails /></PrivateRoutes>,
+                loader: ({ params }) => fetch(`https://photo-serve-server.vercel.app/user-services/${params.id}`)
+            },
+            {
+                path: '/user-service-booking/:id',
+                element: <PrivateRoutes><UserServiceBooking /></PrivateRoutes>,
+                loader: ({ params }) => fetch(`https://photo-serve-server.vercel.app/user-services/${params.id}`)
+            },
         ]
     },
     {

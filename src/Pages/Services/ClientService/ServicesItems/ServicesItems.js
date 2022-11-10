@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const Orders = ({ orders, handleDelete }) => {
-    const { _id, bookingId, orderName, price, img } = orders;
+
+const ServicesItems = ({ service, handleDelete }) => {
+    const { _id, orderName, img, price } = service;
     return (
         <div className="card w-96 bg-base-100 hover:bg-sky-700 hover:backdrop-blur-sm shadow-xl image-full">
             <figure><img src={img} alt="Shoes" /></figure>
@@ -11,12 +11,10 @@ const Orders = ({ orders, handleDelete }) => {
                 <p>${price}</p>
                 <div className="card-actions justify-center">
                     <button onClick={() => handleDelete(_id)} className="btn btn-primary">Remove</button>
-                    <Link to={`/review/${bookingId}`}><button className="btn btn-primary">Review</button></Link>
-
                 </div>
             </div>
         </div>
     );
 };
 
-export default Orders;
+export default ServicesItems;

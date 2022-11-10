@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
-import BookingServices from '../Services/Booking/BookingService/BookingServices';
+import toast from 'react-hot-toast';
+import MainBookingService from '../Services/Booking/BookingService/MainBookingService/MainBookingService';
+
+
 
 
 
@@ -29,7 +32,7 @@ const Review = () => {
             photoURL,
             name
         }
-        fetch(`http://localhost:5000/review`, {
+        fetch(`https://photo-serve-server.vercel.app/review`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -39,7 +42,8 @@ const Review = () => {
             .then(data => {
                 console.log(data)
                 if (data.acknowledged) {
-                    alert('Feed Back Successfully Added')
+                    toast.success('Feed Back Successfully Added')
+
                 }
             })
             .catch(error => console.error(error))
@@ -47,10 +51,10 @@ const Review = () => {
     }
     return (
         <div className='mt-5 mb-5'>
-            <BookingServices
+            <MainBookingService
                 key={bookingServices._id}
                 bookingServices={bookingServices}
-            ></BookingServices>
+            ></MainBookingService>
             <div className='max-w-[550px] mx-auto mb-20'>
                 <h1 className='text-4xl text-center mb-10'>Feedback</h1>
                 <form onSubmit={handleReviewSubmit}>

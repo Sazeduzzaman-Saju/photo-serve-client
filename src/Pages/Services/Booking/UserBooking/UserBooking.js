@@ -1,29 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../../context/AuthProvider/AuthProvider';
 import Orders from './Orders';
+import toast from 'react-hot-toast';
 
 const UserBooking = () => {
     const { user } = useContext(AuthContext);
     const [bookingOrders, setBookingOrder] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/booking?email=${user?.email}`)
+        fetch(`https://photo-serve-server.vercel.app/booking?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setBookingOrder(data))
     }, [user?.email])
 
-    
+
     const handleDelete = id => {
         const proceed = window.confirm('Confirm Delete This Order')
         if (proceed) {
-            fetch(`http://localhost:5000/booking/${id}`, {
+            fetch(`https://photo-serve-server.vercel.app/booking/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
                     if (data.deletedCount > 0) {
-                        alert('Delete Successfully')
+                        toast.error('Delete Successfully')
                         const available = bookingOrders.filter(order => order._id !== id)
                         setBookingOrder(available);
                     }
@@ -31,6 +32,7 @@ const UserBooking = () => {
                 .catch(error => console.error(error))
         }
     }
+
     return (
         <div className='max-w-screen-xl mx-auto mt-20 mb-20'>
             <h1>

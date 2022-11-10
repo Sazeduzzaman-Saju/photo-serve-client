@@ -1,17 +1,95 @@
 import React, { useEffect, useState } from 'react';
+import { FcInternal } from "react-icons/fc";
+import { Link } from 'react-router-dom';
+import SomeServices from './SomeServices';
+import ClientServicesItems from './ClientServicesItems/ClientServicesItems'
 
 const Home = () => {
     const [services, setServices] = useState([]);
+    const [userServices, setUserServices] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://photo-serve-server.vercel.app/services-limit')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
+
+
+
+    useEffect(() => {
+        fetch('https://photo-serve-server.vercel.app/user-services')
+            .then(res => res.json())
+            .then(data => setUserServices(data))
+    }, [])
     return (
-        <div className='container mx-auto px-4'>
-            <h1 className='flex justify-start'>This is Home {services.length}</h1>
-        </div>
+        <div className='container mx-auto px-4 mt-20'>
+            {/* <h1 className='flex justify-start'>This is Home {services.length}</h1> */}
+            <section className="dark:bg-gray-800 dark:text-gray-100">
+                <div className="container flex flex-col justify-center mx-auto lg:flex-row lg:justify-between">
+                    <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
+                        <h1 className="text-5xl font-bold leading-none sm:text-6xl">Capture<br />
+                            <span className="text-violet-400"> Love, Joy & Everything</span> With Us
+                        </h1>
+                        <p className="mt-6 mb-8 text-lg sm:mb-12">It is a long established fact that a reader will be distracted by the reale he point of using Lorem Ipsum is that it has a more-or-less normal valid.
+                        </p>
+                        <div>
+                            <button className="custom-btn btn-6"><span>Book Services</span></button>
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-center p-6 ">
+                        <img src="https://i.postimg.cc/ryWJz8PN/hero-img-1.png" alt="" className="object-contain h-full  image-full" />
+                    </div>
+                </div>
+            </section >
+            <section>
+                <div className='text-center'>
+                    <div>
+                        <button className='btn btn-circle bg-white border-0 shadow-lg animate-bounce'>
+                            <FcInternal className='text-5xl'></FcInternal>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div className='container mx-auto px-4 mt-20 mb-20 text-center'>
+                    <h1 className='text-4xl text-bold font-bold mb-3'>Service<br /> We Provide</h1>
+                    <hr />
+
+                </div>
+            </section>
+            <section>
+                <div className=' grid grid-cols-3 gap-4 max-w-screen-xl mx-auto'>
+                    {
+                        services.map(service => <SomeServices
+                            key={service._id}
+                            service={service}
+                        ></SomeServices>)
+                    }
+                </div>
+                <div className='text-center mt-5 mb-10'>
+                    <Link to={'/services'}><button className='btn btn-outline'> See All </button> </Link>
+                </div>
+            </section>
+            <section>
+                <div className='container mx-auto px-4 mt-20 mb-20 text-center'>
+                    <h1 className='text-4xl text-bold font-bold mb-3'>Client Services <br />We Serve</h1>
+                    <hr />
+                </div>
+            </section>
+            <section>
+                <div className=' grid grid-cols-3 gap-4 max-w-screen-xl mx-auto'>
+                    {
+                        userServices.map(service => <ClientServicesItems
+                            key={service._id}
+                            service={service}
+                        ></ClientServicesItems>)
+                    }
+                </div>
+                <div className='text-center mt-5 mb-10'>
+                    <Link to={'/services'}><button className='btn btn-outline'> See All </button> </Link>
+                </div>
+            </section>
+        </div >
     );
 };
 
