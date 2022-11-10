@@ -87,7 +87,7 @@ const ServiceDetails = () => {
                             <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
                             <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                         </div>
-                        <p>{price}</p>
+                        <p className="text-3xl font-bold">$ {price}</p>
                         <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
                             <Link to={`/booking/${_id}`}>
                                 <button className='btn'>Book Now</button>
