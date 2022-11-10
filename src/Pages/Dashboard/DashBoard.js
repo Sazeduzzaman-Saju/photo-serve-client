@@ -100,9 +100,6 @@ const DashBoard = () => {
                                         <Link className='mr-3' to={'/user-booking'}>Booking</Link>
                                     </button>
                                     <button className='w-full custom-btn btn-6'>
-                                        <Link className='mr-3' to={'/user-booking'}>Booking</Link>
-                                    </button>
-                                    <button className='w-full custom-btn btn-6'>
                                         <Link className='mr-3' to={'/user-services'}>Post Service</Link>
                                     </button>
                                 </div>
