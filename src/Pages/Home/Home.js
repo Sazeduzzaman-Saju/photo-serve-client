@@ -70,7 +70,7 @@ const Home = () => {
                     }
                 </div>
                 <div className='text-center mt-5 mb-10'>
-                    <Link to={'/services'}><button class="custom-btn btn-6"> See All </button> </Link>
+                    <Link to={'/services'}><button className="custom-btn btn-6"> See All </button> </Link>
                 </div>
             </section>
             <section>
@@ -100,7 +100,7 @@ const Home = () => {
                     }
                 </div>
                 <div className='text-center mt-5 mb-10'>
-                    <Link to={'/services'}><button class="custom-btn btn-6"> See All </button> </Link>
+                    <Link to={'/services'}><button className="custom-btn btn-6"> See All </button> </Link>
                 </div>
             </section >
             <section>

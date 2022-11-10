@@ -5,19 +5,19 @@ const ServiceReview = ({ review, handleDelete }) => {
     const { _id, photoURL, name, clientComment, } = review;
 
     return (
-        <div class="p-2  bg-white">
-            <div class=" w-full lg:max-w-full lg:flex">
+        <div className="p-2  bg-white">
+            <div className=" w-full lg:max-w-full lg:flex">
 
-                <div class=" flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" title="Mountain">
+                <div className=" flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" title="Mountain">
                 </div>
-                <div class=" bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                    <div class="mb-8">
-                        <p class="text-gray-700 text-base">{clientComment}</p>
+                <div className=" bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                    <div className="mb-8">
+                        <p className="text-gray-700 text-base">{clientComment}</p>
                     </div>
-                    <div class="flex items-center">
-                        <img class="w-10 h-10 rounded-full mr-4" src={photoURL} alt="Writer" />
-                        <div class="text-sm">
-                            <p class="text-gray-900 leading-none">{name}</p>
+                    <div className="flex items-center">
+                        <img className="w-10 h-10 rounded-full mr-4" src={photoURL} alt="Writer" />
+                        <div className="text-sm">
+                            <p className="text-gray-900 leading-none">{name}</p>
                         </div>
                     </div>
                 </div>

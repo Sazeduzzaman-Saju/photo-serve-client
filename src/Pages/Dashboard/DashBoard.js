@@ -105,9 +105,9 @@ const DashBoard = () => {
                                 </div>
                             </div>
                             <div>
-                                <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">All Reviews</h1>
-                                <div class=" dark:bg-gray-900">
-                                    <div class="container px-6 py-10 mx-auto grid grid-cols-1 gap-4">
+                                <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">All Reviews</h1>
+                                <div className=" dark:bg-gray-900">
+                                    <div className="container px-6 py-10 mx-auto grid grid-cols-1 gap-4">
 
                                         {
                                             customerReview.map(allreview => <AllReviews
