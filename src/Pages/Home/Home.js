@@ -33,10 +33,10 @@ const Home = () => {
                         <h1 className="text-5xl font-bold leading-none sm:text-6xl">Capture<br />
                             <span className="text-violet-400"> Love, Joy & Everything</span> With Us
                         </h1>
-                        <p className="mt-6 mb-8 text-lg sm:mb-12">It is a long established fact that a reader will be distracted by the reale he point of using Lorem Ipsum is that it has a more-or-less normal valid.
+                        <p className="mt-6 mb-8 text-lg sm:mb-12">It is a long established fact that a reader will be distracted by the reale he point of using distracted reader is that it has a more-or-less normal valid.
                         </p>
                         <div>
-                            <button className="custom-btn btn-6"><span>Book Services</span></button>
+                            <Link to={'/services'}><button className="custom-btn btn-6"><span>Book Services</span></button></Link>
                         </div>
                     </div>
                     <div className="flex items-center justify-center p-6 ">
