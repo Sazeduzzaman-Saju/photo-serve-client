@@ -70,7 +70,7 @@ const Services = () => {
                                 <span>Some Others Service!</span>
                                 <span className="font-bold text-lg">PhotoServe Client Provide</span>
                             </div>
-                            <Link to={'/contact'} rel="noreferrer noopener" className="px-5 mt-4 lg:mt-0 py-3 rounded-md border block dark:bg-gray-50 dark:text-gray-900 dark:border-gray-400">Contact</Link>
+                            <Link to={'/contact'} ><button className="custom-btn btn-6">Contact</button> </Link>
                         </div>
                     </div>
                 </div>
