@@ -8,7 +8,7 @@ const ClientService = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        fetch(`https://photo-serve-server.vercel.app/user-services?email=${user?.email}`)
+        fetch(`https://photo-serve-server.vercel.app/specific-data?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setServices(data))
     }, [user?.email])
@@ -74,9 +74,10 @@ const ClientService = () => {
     }
     return (
         <section className="dark:bg-gray-800 dark:text-gray-100 max-w-screen-xl mx-auto">
-            <div className="flex flex-col justify-center p-6 text-center rounded-sm w-96 mx-auto">
+            <h1 className='text-5xl text-center mt-10'>Book your service</h1>
+            <div className="flex flex-col justify-center p-6 text-center rounded-sm w-full mx-auto">
                 <form onSubmit={handleSubmit}>
-                    <div className='grid grid-cols-1 lg:grid-cols-1 gap-4 max-w-[550px] mx-auto'>
+                    <div className='grid grid-cols-1 lg:grid-cols-1 gap-4 max-w-[650px] mx-auto'>
                         <input name='title' type="text" placeholder="Inter your Service title" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
 
                         <input name='img' type="text" placeholder="Inter Service Image Link " className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
@@ -86,17 +87,17 @@ const ClientService = () => {
                         <input name='price' type="number" placeholder="Inter Service Price" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" required />
 
                         <input name='email' type="email" placeholder="Service Description" className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" defaultValue={user?.email} readOnly />
-                    </div>
-                    <textarea name='description' className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md mt-5 " placeholder="Enter Comment"></textarea>
-                    <div>
-                        <input type="submit" placeholder="Type here" className="btn  input-success w-full mt-4" />
+                        <textarea name='description' className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md mt-5 " placeholder="Enter Comment"></textarea>
+                        <div>
+                            <input type="submit" placeholder="Type here" className="btn  input-success w-full mt-4" />
+                        </div>
                     </div>
                 </form>
             </div>
 
             <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
                 <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
-                    <div className='grid grid-cols-3 gap-4'>
+                    <div className='grid grid-cols-3 gap-4 mt-20 mb-20'>
                         {
                             services.map(service => <ServicesItems
                                 key={service._id}

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 
@@ -48,6 +48,7 @@ const Booking = () => {
 
     return (
         <div className='mt-5 mb-5'>
+
             <section>
                 <div className="card card-side bg-base-100 shadow-xl max-w-screen-xl mx-auto mt-10 mb-10">
                     <figure><img src={img} alt="" className='image-full' /></figure>
